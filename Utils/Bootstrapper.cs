@@ -1,12 +1,12 @@
-﻿using Unity;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Utils
 {
 	public abstract class Bootstrapper
 	{
-		protected readonly IUnityContainer _container;
+		protected readonly IServiceCollection _container;
 
-		protected Bootstrapper(IUnityContainer container)
+		protected Bootstrapper(IServiceCollection container)
 		{
 			_container = container;
 		}

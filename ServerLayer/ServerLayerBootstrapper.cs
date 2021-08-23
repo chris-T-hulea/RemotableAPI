@@ -1,17 +1,18 @@
-﻿using Unity;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ServerLayer.Interfaces;
 using Utils;
 
 namespace ServerLayer
 {
 	public class ServerLayerBootstrapper : Bootstrapper
 	{
-		public ServerLayerBootstrapper(IUnityContainer container) : base(container)
+		public ServerLayerBootstrapper(IServiceCollection container) : base(container)
 		{
 		}
 
 		public override void Run()
 		{
-			this._container.RegisterType<IServer, Server>(TypeLifetime.Singleton);
+			this._container.AddScoped<IServer, Server>();
 		}
 	}
 }

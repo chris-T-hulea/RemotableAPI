@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerLayer
+namespace Utils
 {
-    public class Class1
-    {
-    }
+	public enum Key
+	{
+		NoKey = -1,
+		PlayPause = 0
+	}
 }

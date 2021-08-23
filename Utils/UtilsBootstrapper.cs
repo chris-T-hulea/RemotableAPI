@@ -1,16 +1,16 @@
-﻿using Unity;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Utils
 {
 	public class UtilsBootstrapper : Bootstrapper
 	{
-		public UtilsBootstrapper(IUnityContainer container) : base(container)
+		public UtilsBootstrapper(IServiceCollection container) : base(container)
 		{
 		}
 
 		public override void Run()
 		{
-			this._container.RegisterSingleton<Constants>();
+			this._container.AddScoped<Constants>();
 		}
 	}
 }

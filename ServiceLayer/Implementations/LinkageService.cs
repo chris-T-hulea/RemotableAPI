@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using ServiceLayer.Interfaces;
 using Utils;
 
 namespace ServiceLayer
 {
-	public class LinkageService
+	public class LinkageService : ILinkageService
 	{
 		private readonly Constants _constants;
 		private readonly TimeSpan refreshTime = TimeSpan.FromMinutes(1);

@@ -1,4 +1,4 @@
-﻿using System.Net.WebSockets;
+﻿using ServerLayer.Interfaces;
 
 namespace ServerLayer
 {
