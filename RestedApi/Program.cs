@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
@@ -14,6 +15,9 @@ namespace RestedApi
 				Host.CreateDefaultBuilder(args)
 						.ConfigureWebHostDefaults(webBuilder =>
 						{
+#if !DEBUG
+							webBuilder.UseKestrel(options => options.Listen(IPAddress.Parse("192.168.1.106"), 8080));
+#endif
 							webBuilder.UseStartup<Startup>();
 						});
 	}

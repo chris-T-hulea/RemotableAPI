@@ -27,6 +27,8 @@ namespace RestedApi
 			// Run bootstrapper
 			new MainBootstrapper(services).Run();
 
+			services.AddCors(options => options.AddPolicy("Debug", cors => cors.WithOrigins("*").AllowAnyHeader().AllowAnyMethod()));
+			services.AddCors(options => options.AddPolicy("localhost", cors => cors.WithOrigins("localHost:8080").AllowAnyHeader().AllowAnyMethod()));
 			services.AddControllers();
 			services.AddSwaggerGen(c =>
 			{
@@ -47,6 +49,8 @@ namespace RestedApi
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
+
+			app.UseCors("Debug");
 
 			app.UseAuthentication();
 			app.UseAuthorization();
