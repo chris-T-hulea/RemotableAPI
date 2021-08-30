@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ServerLayer;
 using ServiceLayer;
 using Utils;
 
@@ -16,7 +15,6 @@ namespace RestedApi
 		{
 			new UtilsBootstrapper(_container).Run();
 			new ServiceLayerBootstrapper(this._container).Run();
-			new ServerLayerBootstrapper(this._container).Run();
 		}
 	}
 }

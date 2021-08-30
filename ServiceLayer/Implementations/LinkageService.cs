@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Options;
 using ServiceLayer.Interfaces;
 using Utils;
 
@@ -7,20 +8,20 @@ namespace ServiceLayer
 {
 	public class LinkageService : ILinkageService
 	{
-		private readonly Constants _constants;
+		private readonly Settings _settings;
 		private readonly TimeSpan refreshTime = TimeSpan.FromMinutes(1);
 		private DateTimeOffset lastUpdate = DateTimeOffset.MinValue;
 		private Guid currentId = Guid.Empty;
 		private List<Guid> savedIds = new List<Guid>();
 
-		public LinkageService(Constants constants)
+		public LinkageService(IOptions<Settings> settings)
 		{
-			_constants = constants;
+			_settings = settings.Value;
 		}
 
 		public string GetGuid()
 		{
-			if (this._constants.DevMode)
+			if (this._settings.DevMode)
 			{
 				return Encode(currentId);
 			}

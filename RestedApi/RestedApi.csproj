@@ -6,15 +6,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <COMReference Include="{d37e2a3e-8545-3a39-9f4f-31827c9124ab}">
+	    <WrapperTool>tlbimp</WrapperTool>
+	    <VersionMinor>4</VersionMinor>
+	    <VersionMajor>2</VersionMajor>
+	    <Guid>d37e2a3e-8545-3a39-9f4f-31827c9124ab</Guid>
+	  </COMReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
 		<PackageReference Include="InputSimulator" Version="1.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.7" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.7" />
 		<PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ServerLayer\ServerLayer.csproj" />
+		<ProjectReference Include="..\Model\Model.csproj" />
 		<ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
 		<ProjectReference Include="..\Utils\Utils.csproj" />
 	</ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 using ServiceLayer.Interfaces;
 using Utils;
 
@@ -13,6 +14,7 @@ namespace ServiceLayer
 		public override void Run()
 		{
 			this._container.AddScoped<ILinkageService, LinkageService>();
+			this._container.AddScoped<VolumeService>();
 			this._container.AddScoped<IControlService, ControlService>();
 		}
 	}

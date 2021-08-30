@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
+using RestedApi.Mapper;
+using Utils;
 
 namespace RestedApi
 {
@@ -23,6 +27,14 @@ namespace RestedApi
 		{
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 					.AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
+
+			services.Configure<Settings>(Configuration.GetSection(Settings.Name));
+
+			var mappingConfig = new MapperConfiguration(mc =>
+			{
+				mc.AddProfile(new ApplicationProfile());
+			});
+			services.AddSingleton(mappingConfig.CreateMapper());
 
 			// Run bootstrapper
 			new MainBootstrapper(services).Run();

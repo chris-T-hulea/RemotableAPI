@@ -10,7 +10,7 @@ namespace Utils
 
 		public override void Run()
 		{
-			this._container.AddScoped<Constants>();
+			//this._container.AddScoped<Settings>();
 		}
 	}
 }
