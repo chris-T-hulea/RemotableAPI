@@ -7,7 +7,7 @@ using WindowsInput;
 using Microsoft.Extensions.Options;
 using Model.Entities;
 using ServiceLayer.Interfaces;
-using Utils;
+using Model;
 
 namespace ServiceLayer
 {
@@ -38,7 +38,7 @@ namespace ServiceLayer
 				return;
 			}
 
-			App app = this.FindApp(command.TargetAppId);
+			UsableApp app = this.FindApp(command.TargetAppId);
 			if (app != null)
 			{
 				this.Focus(app);
@@ -47,23 +47,23 @@ namespace ServiceLayer
 			simulator.Keyboard.KeyPress(command.KeyCode);
 		}
 
-		public IEnumerable<App> GetApps()
+		public IEnumerable<UsableApp> GetApps()
 		{
 			return Process.GetProcesses().Where(proc => proc.MainWindowHandle != IntPtr.Zero
 																												&& proc.MainWindowTitle != string.Empty)
-																	 .Select(proc => new App(proc));
+																	 .Select(proc => new UsableApp(proc));
 		}
 
-		public App FindApp(int pid)
+		public UsableApp FindApp(int pid)
 		{
-			return new App(Process.GetProcesses().FirstOrDefault(process => process.Id == pid));
+			return new UsableApp(Process.GetProcesses().FirstOrDefault(process => process.Id == pid));
 		}
 
 		public void GetApps(double volume)
 		{
 		}
 
-		private bool Focus(App app)
+		private bool Focus(UsableApp app)
 		{
 			return SetForegroundWindow(app.Process.MainWindowHandle) != 0;
 		}

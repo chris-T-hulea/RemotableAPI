@@ -1,21 +1,18 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceLayer.Interfaces;
-using Utils;
+using Model;
 
 namespace ServiceLayer
 {
-	public class ServiceLayerBootstrapper : Bootstrapper
+	public class ServiceLayerBootstrapper
 	{
-		public ServiceLayerBootstrapper(IServiceCollection container) : base(container)
-		{
-		}
 
-		public override void Run()
+		public void Run(IServiceCollection container)
 		{
-			this._container.AddScoped<ILinkageService, LinkageService>();
-			this._container.AddScoped<VolumeService>();
-			this._container.AddScoped<IControlService, ControlService>();
+			container.AddScoped<ILinkageService, LinkageService>();
+			container.AddScoped<VolumeService>();
+			container.AddScoped<IControlService, ControlService>();
 		}
 	}
 }

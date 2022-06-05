@@ -12,8 +12,8 @@ namespace ServiceLayer.Interfaces
 	{
 		void SendGlobalKey(KeyPressCommand command);
 
-		IEnumerable<App> GetApps();
+		IEnumerable<UsableApp> GetApps();
 
-		App FindApp(int pid);
+		UsableApp FindApp(int pid);
 	}
 }

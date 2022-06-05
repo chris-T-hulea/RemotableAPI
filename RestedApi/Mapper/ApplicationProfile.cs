@@ -13,7 +13,7 @@ namespace RestedApi.Mapper
 	{
 		public ApplicationProfile()
 		{
-			_ = CreateMap<App, ApplicationDto>()
+			_ = CreateMap<UsableApp, UsableAppDto>()
 				.ForMember(
 					dest => dest.Icon,
 					opt =>
@@ -34,7 +34,7 @@ namespace RestedApi.Mapper
 					opt => opt.MapFrom(src => src.KeyCode.VirtualCode()));
 		}
 
-		private static string GetStringIcon(App src)
+		private static string GetStringIcon(UsableApp src)
 		{
 			Icon icon = Icon.ExtractAssociatedIcon(src.Process.MainModule.FileName);
 			byte[] bytes;

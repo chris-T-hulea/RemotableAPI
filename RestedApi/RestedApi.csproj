@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<UserSecretsId>aspnet-RestedApi-BFC2092E-1756-43BA-A629-BAB6BFE321AC</UserSecretsId>
 	</PropertyGroup>
 
@@ -19,6 +19,7 @@
 		<PackageReference Include="InputSimulator" Version="1.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.7" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.5" />
 		<PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
 		<PackageReference Include="System.Drawing.Common" Version="5.0.2" />
@@ -27,6 +28,5 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Model\Model.csproj" />
 		<ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
-		<ProjectReference Include="..\Utils\Utils.csproj" />
 	</ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using ServiceLayer.Interfaces;
-using Utils;
+using Model;
 
 namespace ServiceLayer
 {

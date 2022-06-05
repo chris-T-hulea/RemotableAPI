@@ -14,7 +14,7 @@ namespace ServiceLayer
 			this._device = new CoreAudioController().GetDefaultDevice(DeviceType.Playback, Role.Multimedia);
 		}
 
-		public void SetVolume(App app, double volume)
+		public void SetVolume(UsableApp app, double volume)
 		{
 			var session = this._device.SessionController.FirstOrDefault(ses => ses.ProcessId == app.Id);
 

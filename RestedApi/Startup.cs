@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -9,7 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using RestedApi.Mapper;
-using Utils;
+using Model;
+using Newtonsoft.Json.Serialization;
 
 namespace RestedApi
 {
@@ -37,11 +37,14 @@ namespace RestedApi
 			services.AddSingleton(mappingConfig.CreateMapper());
 
 			// Run bootstrapper
-			new MainBootstrapper(services).Run();
+			new MainBootstrapper().Run(services);
 
 			services.AddCors(options => options.AddPolicy("Debug", cors => cors.WithOrigins("*").AllowAnyHeader().AllowAnyMethod()));
 			services.AddCors(options => options.AddPolicy("localhost", cors => cors.WithOrigins("localHost:8080").AllowAnyHeader().AllowAnyMethod()));
-			services.AddControllers();
+			services.AddControllers().AddNewtonsoftJson(options =>
+			{
+				options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+			});
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestedApi", Version = "v1" });
@@ -54,9 +57,9 @@ namespace RestedApi
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
-				app.UseSwagger();
-				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestedApi v1"));
 			}
+			app.UseSwagger();
+			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestedApi v1"));
 
 			app.UseHttpsRedirection();
 

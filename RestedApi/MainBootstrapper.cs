@@ -1,20 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ServiceLayer;
-using Utils;
+using Model;
 
 namespace RestedApi
 {
-	public class MainBootstrapper : Bootstrapper
-
+	public class MainBootstrapper
 	{
-		public MainBootstrapper(IServiceCollection container) : base(container)
+		public void Run(IServiceCollection container)
 		{
-		}
-
-		public override void Run()
-		{
-			new UtilsBootstrapper(_container).Run();
-			new ServiceLayerBootstrapper(this._container).Run();
+			new ServiceLayerBootstrapper().Run(container);
 		}
 	}
 }

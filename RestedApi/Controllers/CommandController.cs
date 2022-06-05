@@ -12,6 +12,7 @@ using Model.DTO;
 using Model.Entities;
 using ServiceLayer;
 using ServiceLayer.Interfaces;
+using System.Diagnostics;
 
 namespace RestedApi.Controllers
 {
@@ -43,7 +44,7 @@ namespace RestedApi.Controllers
 		{
 			// HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-			var apps = _service.GetApps().Select(app => this._mapper.Map<ApplicationDto>(app));
+			var apps = _service.GetApps().Select(app => this._mapper.Map<UsableAppDto>(app));
 
 			return Ok(apps);
 		}
@@ -63,7 +64,7 @@ namespace RestedApi.Controllers
 		{
 			// HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-			App app = this._service.FindApp(id);
+			UsableApp app = this._service.FindApp(id);
 
 			if (app == null)
 			{
@@ -95,7 +96,7 @@ namespace RestedApi.Controllers
 			return Ok();
 		}
 
-		[HttpPost("Talk/{message}")]
+		[HttpGet("Talk/{message}")]
 		public ActionResult Talk(string message)
 		{
 			// HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
@@ -111,7 +112,6 @@ namespace RestedApi.Controllers
 			// HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
 			_service.SendGlobalKey(this._mapper.Map<KeyPressCommand>(command));
-
 			return Ok();
 		}
 	}
