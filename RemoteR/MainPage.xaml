@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RemoteR"
+             xmlns:dtos="clr-namespace:Model.DTO;assembly=Model"
+						 x:DataType="local:MainPageModel"
+						 Title="{Binding Title}"
+             x:Class="RemoteR.MainPage">
+	<Grid RowDefinitions="10,*,Auto"
+				ColumnDefinitions="*,*,*"
+				Padding="0,0" 
+				VerticalOptions="Fill"
+				HorizontalOptions="Fill">
+		<CollectionView Grid.Row="1" 
+										Grid.ColumnSpan="3" 
+										BackgroundColor="Transparent"
+										HorizontalOptions="Center" 
+										ItemsSource="{Binding UsableApps}"
+										SelectedItem="{Binding SelectedApp}"
+										SelectionChangedCommand="{Binding SelectedAppChangedCommand}"
+										SelectionMode="Single"
+										Margin="15">
+			<CollectionView.ItemTemplate>
+				<DataTemplate x:DataType="dtos:UsableAppDto">
+					<Grid ColumnDefinitions="50,*"
+								ColumnSpacing="10"
+								HeightRequest="50"
+								Margin="5">
+						<Image Grid.Column="0" Source="{Binding Image}"/>
+						<Label Grid.Column="1" Text="{Binding Name}" 
+									 VerticalOptions="Center"/>
+					</Grid>
+				</DataTemplate>
+			</CollectionView.ItemTemplate>
+		</CollectionView>
+
+
+
+		<Button Grid.Row="2" 										
+						Grid.Column="0" 		
+						Margin="10"
+						HeightRequest="60"
+						FontSize="30"
+						FontAttributes="Bold"
+						Text="-"
+						Command="{Binding VolumeDownCommand}"
+						IsEnabled="{Binding CanChangeVolume}"/>
+
+		<Button Grid.Row="2" 										
+						Grid.Column="1" 		
+						Margin="10"
+						HeightRequest="60"
+						FontSize="30"
+						FontAttributes="Bold"
+						Text="+"
+						Command="{Binding VolumeUpCommand}"
+						IsEnabled="{Binding CanChangeVolume}"/>
+
+			<Button Grid.Row="2" 										
+						Grid.Column="2" 		
+						Margin="10"
+						HeightRequest="60"
+						Text="PLay/Pause"
+						Command="{Binding PlayPauseCommand}"/>
+
+	</Grid>
+
+</ContentPage>
